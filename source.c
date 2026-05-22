@@ -1,23 +1,13 @@
-#include <linux/module.h>
-#include <linux/kernel.h>
-#include <linux/init.h>
-#include <linux/proc_fs.h>
-#include <linux/seq_file.h>
-#include <linux/mm.h>
-#include <linux/sched/signal.h>
-#include <linux/sched/task.h>
-
-#define NOMBRE_PROC "kmonitor_proyecto"
+#include "kmonitor.h"
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Grupo Proyecto");
 MODULE_DESCRIPTION("Modulo de monitoreo del sistema - Proyecto");
 MODULE_VERSION("1.0");
 
-//  Puntero del /proc
 static struct proc_dir_entry *entrada_proc;
 
-//  Traducción de estados de procesos
+//  Puntero del /proc
 static const char *estado_proceso(long estado)
 {
     if (estado == TASK_RUNNING)
@@ -37,16 +27,13 @@ static int mostrar_kmonitor(struct seq_file *m, void *v)
 {
     struct sysinfo info_sistema;
     struct task_struct *proceso;
-
     unsigned long memoria_total, memoria_libre, memoria_usada;
     int porcentaje_uso;
 
     si_meminfo(&info_sistema);
-
     memoria_total = info_sistema.totalram * 4;
     memoria_libre = info_sistema.freeram * 4;
     memoria_usada = memoria_total - memoria_libre;
-
     porcentaje_uso = (memoria_total) ? (memoria_usada * 100) / memoria_total : 0;
 
     seq_printf(m, "===== MEMORIA DEL SISTEMA =====\n");
@@ -63,7 +50,6 @@ static int mostrar_kmonitor(struct seq_file *m, void *v)
                    proceso->comm,
                    estado_proceso(proceso->state));
     }
-
     return 0;
 }
 
@@ -75,9 +61,9 @@ static int abrir_kmonitor(struct inode *inode, struct file *file)
 
 //  operaciones del proc
 static const struct proc_ops operaciones_proc = {
-    .proc_open = abrir_kmonitor,
-    .proc_read = seq_read,
-    .proc_lseek = seq_lseek,
+    .proc_open    = abrir_kmonitor,
+    .proc_read    = seq_read,
+    .proc_lseek   = seq_lseek,
     .proc_release = single_release,
 };
 
@@ -85,12 +71,10 @@ static const struct proc_ops operaciones_proc = {
 static int __init iniciar_kmonitor(void)
 {
     entrada_proc = proc_create(NOMBRE_PROC, 0444, NULL, &operaciones_proc);
-
     if (!entrada_proc) {
         printk(KERN_ERR "kmonitor_proyecto: error al crear /proc\n");
         return -ENOMEM;
     }
-
     printk(KERN_INFO "kmonitor_proyecto: modulo cargado\n");
     return 0;
 }
@@ -100,7 +84,6 @@ static void __exit salir_kmonitor(void)
 {
     if (entrada_proc)
         proc_remove(entrada_proc);
-
     printk(KERN_INFO "kmonitor_proyecto: modulo eliminado\n");
 }
 
