@@ -13,11 +13,11 @@
 #define NOMBRE_PROC "kmonitor_proyecto"
 
 //funciones declaras para el kmonitor.c
-static const char *estado_proceso(long estado);
+/*static const char *estado_proceso(long estado);
 static int mostrar_kmonitor(struct seq_file *m, void *v);
 static int abrir_kmonitor(struct inode *inode, struct file *file);
 static int __init iniciar_kmonitor(void);
-static void __exit salir_kmonitor(void);
+static void __exit salir_kmonitor(void);*/    //NO BORRAR ESTO
 
 #endif 
 //kmonitor.h
