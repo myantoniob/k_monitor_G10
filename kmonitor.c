@@ -89,3 +89,9 @@ static void __exit salir_kmonitor(void)
 
 module_init(iniciar_kmonitor);
 module_exit(salir_kmonitor);
+
+/*TASK_RUNNING = 0
+  TASK_INTERRUPTIBLE = 1
+  TASK_UNINTERRUPTIBLE = 2
+  EXIT_ZOMBIE = 32*/
+
