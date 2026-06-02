@@ -10,7 +10,7 @@
 #include <linux/sched/signal.h>
 #include <linux/sched/task.h>
 
-#define NOMBRE_PROC "kmonitor_proyecto"
+#define NOMBRE_PROC "kmonitor_Grupo_10"
 
 //funciones declaras para el kmonitor.c
 /*static const char *estado_proceso(long estado);
