@@ -48,7 +48,7 @@ static int mostrar_kmonitor(struct seq_file *m, void *v)
         seq_printf(m, "%-10d %-25s %-15s\n",
                    proceso->pid,
                    proceso->comm,
-                   estado_proceso(proceso->state));
+                   estado_proceso(proceso->__state));
     }
     return 0;
 }
