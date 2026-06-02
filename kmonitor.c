@@ -93,5 +93,7 @@ module_exit(salir_kmonitor);
 /*TASK_RUNNING = 0
   TASK_INTERRUPTIBLE = 1
   TASK_UNINTERRUPTIBLE = 2
-  EXIT_ZOMBIE = 32*/
+  EXIT_ZOMBIE = 32 
+  
+  NO BORRAR*/
 
