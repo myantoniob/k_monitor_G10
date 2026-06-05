@@ -1,6 +1,7 @@
 # K-Monitor
 
 ## Descripción General
+[![Ver Video](https://img.shields.io/badge/Reproducir_Video-Google_Drive-blue?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/1GR5nDVU32jF8MbyLYutdxqV-T2BOFkC6/view?usp=drive_link)
 
 **K-Monitor** es un módulo cargable para Linux (*Loadable Kernel Module - LKM*) desarrollado en lenguaje C, cuyo propósito es obtener información relacionada con la memoria del sistema y los procesos activos directamente desde las estructuras internas del kernel.
 
